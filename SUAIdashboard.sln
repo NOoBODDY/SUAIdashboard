@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SUAIdashboard", "SUAIdashboard\SUAIdashboard.csproj", "{AF247A9F-1FC3-45C8-9CE0-27378DEB06B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF247A9F-1FC3-45C8-9CE0-27378DEB06B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF247A9F-1FC3-45C8-9CE0-27378DEB06B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF247A9F-1FC3-45C8-9CE0-27378DEB06B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF247A9F-1FC3-45C8-9CE0-27378DEB06B6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8141369A-5515-4612-95A6-E4E89D84EB09}
+	EndGlobalSection
+EndGlobal
