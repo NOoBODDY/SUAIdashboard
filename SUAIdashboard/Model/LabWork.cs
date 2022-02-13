@@ -1,5 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System;
+using System.Windows.Media;
+using System.Windows;
 
 namespace SUAIdashboard.Model
 {
@@ -47,7 +50,34 @@ namespace SUAIdashboard.Model
         public string name { get { return Name; } set { Name = value; OnPropertyChanged("name"); } } //
         string Name;
         
-        public string harddeadline { get { return Harddeadline; } set { Harddeadline = value; OnPropertyChanged("harddeadline"); } }//
+        public string harddeadline { 
+            get { return Harddeadline; } 
+            set 
+            { 
+                Harddeadline = value; 
+                OnPropertyChanged("harddeadline");
+                ClockBrush = Brushes.DimGray/*new SolidColorBrush(Color.FromRgb(67, 67, 68))*/;//#434344
+                if (value !=null)
+                {
+                    DateTime date = DateTime.Now;
+                    DateTime deadline = DateTime.Parse(value);
+                    if (date > deadline)
+                    {
+                        ClockBrush = Brushes.Red;
+                    }
+                    else
+                    {
+                        date.AddDays(3);
+                        if (date > deadline)
+                        {
+                            ClockBrush = Brushes.Yellow;
+                        }
+                    }
+                }
+               
+                
+            } 
+        }//
         string Harddeadline;
         
         public string subject_name { get { return Subject_name; } set { Subject_name = value; OnPropertyChanged("subject_name"); } } //
@@ -55,6 +85,23 @@ namespace SUAIdashboard.Model
         public string hash { get; set; } //2
         
         public string status { get; set; } //2
+
+        Brush clockBrush;
+        public Brush ClockBrush { get { return clockBrush; } set { clockBrush = value; OnPropertyChanged("ClockBrush"); } }
         
+        //public Visibility Visibility 
+        //{ 
+        //    get
+        //    {
+        //        if (Convert.ToInt32( status) == 2 )
+        //        {
+        //            return Visibility.Collapsed;
+        //        }
+        //        else
+        //        {
+        //            return Visibility.Visible;
+        //        }
+        //    }
+        //}
     }
 }

@@ -17,15 +17,20 @@
                      HorizontalContentAlignment="Stretch"
                      SelectionMode="Extended"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                
                 <ListBox.ItemTemplate>
                     <DataTemplate >
                         <Border BorderBrush="{DynamicResource PrimaryGrayColor}" BorderThickness="1" CornerRadius="10" >
                             <DockPanel LastChildFill="True">
+                                <!--Description--><!--
+                                <Expander DockPanel.Dock="Bottom">
+                                    <TextBlock x:Name="elementText" Grid.Row="1" Text="{Binding description}" Margin="3 5 0 0"/>
+                                </Expander>-->
                                 <!--Buttons-->
                                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                                    <Button Content="{DynamicResource link}" Style="{DynamicResource LabButtonStyle}" Margin="0 5 5 0"/>
-                                    <Button Content="{DynamicResource clock}" Style="{DynamicResource LabButtonStyle}" Margin="0 5 5 0"/>
-                                    <Button Content="{DynamicResource done}" Style="{DynamicResource LabButtonStyle}" Margin="0 5 5 0"/>
+                                    <Button Content="{DynamicResource link}" Style="{DynamicResource LabButtonStyle}" Margin="0 5 5 0" Foreground="{DynamicResource ActionIconColor}"/>
+                                    <Button Content="{DynamicResource clock}" Style="{DynamicResource LabButtonStyle}" Margin="0 5 5 0" Foreground="{Binding ClockBrush}" ToolTip="{Binding harddeadline}"/>
+                                    <Button Content="{DynamicResource done}" Style="{DynamicResource LabButtonStyle}" Margin="0 5 5 0" Foreground="{DynamicResource ActionIconColor}"/>
                                 </StackPanel>
                                 <!--names-->
                                 <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
@@ -33,8 +38,10 @@
                                     <TextBlock TextWrapping="Wrap" FontSize="20" Text="{Binding name}" Margin="3 5 0 0"/>
                                 </StackPanel>
                             </DockPanel>
+
                         </Border>
                     </DataTemplate>
+                   
                 </ListBox.ItemTemplate>
             </ListBox>
             <Label Content="{Binding Label}" Foreground="Black" FontSize="50" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
