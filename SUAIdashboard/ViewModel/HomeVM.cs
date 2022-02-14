@@ -45,15 +45,44 @@ namespace SUAIdashboard.ViewModel
             set { labWorks = value; OnPropertyChanged("LabWorks"); }
         }
 
+        Visibility visibilityBtn;
+        public Visibility VisibilityBtn { get { return visibilityBtn; } set { visibilityBtn = value; OnPropertyChanged("VisibilityBtn"); } }
+
         string label;
         public string Label { get { return label; } set { label = value; OnPropertyChanged("label"); } }
 
         #endregion
 
+        #region //Commands
+
+        //menu buttons' commands
+        RelayCommand changeVisibility;
+        public RelayCommand ChangeVisibility
+        {
+            get
+            {
+                return changeVisibility ??
+                  (changeVisibility = new RelayCommand(obj =>
+                  {
+                      if (Visibility.Collapsed == VisibilityBtn)
+                      {
+                          VisibilityBtn = Visibility.Visible;
+                      }
+                      else
+                      {
+                          VisibilityBtn = Visibility.Collapsed;
+                      }
+                  }));
+            }
+        }
+        #endregion
+
+
         SUAI user;
 
         public HomeVM(UserSettings userSettings)
         {
+            VisibilityBtn = Visibility.Collapsed;
             Settings = userSettings;
             Label = "Loading...";
             Task task = new Task(Load);

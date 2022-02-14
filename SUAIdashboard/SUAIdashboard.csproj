@@ -58,7 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converter\WidthConverter.cs" />
+    <Compile Include="Converter\VisibilityConverter.cs" />
     <Compile Include="DataKeeper.cs" />
     <Compile Include="Model\LabWork.cs" />
     <Compile Include="Model\Profile.cs" />

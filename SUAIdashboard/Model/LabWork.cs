@@ -56,26 +56,6 @@ namespace SUAIdashboard.Model
             { 
                 Harddeadline = value; 
                 OnPropertyChanged("harddeadline");
-                ClockBrush = Brushes.DimGray/*new SolidColorBrush(Color.FromRgb(67, 67, 68))*/;//#434344
-                if (value !=null)
-                {
-                    DateTime date = DateTime.Now;
-                    DateTime deadline = DateTime.Parse(value);
-                    if (date > deadline)
-                    {
-                        ClockBrush = Brushes.Red;
-                    }
-                    else
-                    {
-                        date.AddDays(3);
-                        if (date > deadline)
-                        {
-                            ClockBrush = Brushes.Yellow;
-                        }
-                    }
-                }
-               
-                
             } 
         }//
         string Harddeadline;
@@ -86,22 +66,72 @@ namespace SUAIdashboard.Model
         
         public string status { get; set; } //2
 
-        Brush clockBrush;
-        public Brush ClockBrush { get { return clockBrush; } set { clockBrush = value; OnPropertyChanged("ClockBrush"); } }
-        
-        //public Visibility Visibility 
-        //{ 
-        //    get
-        //    {
-        //        if (Convert.ToInt32( status) == 2 )
-        //        {
-        //            return Visibility.Collapsed;
-        //        }
-        //        else
-        //        {
-        //            return Visibility.Visible;
-        //        }
-        //    }
-        //}
+        public Brush ClockBrush 
+        { 
+            get 
+            {
+                if (Harddeadline != null)
+                {
+                    DateTime date = DateTime.Now;
+                    DateTime deadline = DateTime.Parse(Harddeadline);
+                    if (date > deadline)
+                    {
+                        return Brushes.Red;
+                    }
+                    else
+                    {
+                        date = date.AddDays(3);
+                        if (date > deadline)
+                        {
+                            return Brushes.YellowGreen;
+                        }
+                    }
+                }
+                return new SolidColorBrush(Color.FromRgb(67, 67, 68));
+            } 
+        }
+
+        public Visibility Visibility
+        {
+            get
+            {
+                if (status == "2")
+                {
+                    return Visibility.Collapsed;
+                }
+                else
+                {
+                    return Visibility.Visible;
+                }
+            }
+        }
+
+        double BackroundOpacity = 0.5;
+
+        public Brush StatusBrush
+        {
+            get
+            {
+                Brush brush;
+                switch (status)
+                {
+                    case "1":
+                        brush = new SolidColorBrush(Color.FromRgb(255, 255, 0));
+                        brush.Opacity = BackroundOpacity;
+                        return brush;//YellowColor
+                    case "2":
+                        brush = new SolidColorBrush(Color.FromRgb(19, 224, 4));
+                        brush.Opacity = BackroundOpacity;
+                        return brush; //GreenColor
+                    case "3":
+                        brush = new SolidColorBrush(Color.FromRgb(219, 4, 0));
+                        brush.Opacity = BackroundOpacity;
+                        return brush; //RedColor
+                    default:
+                        return Brushes.Transparent;
+                }
+            }
+        }
+
     }
 }
