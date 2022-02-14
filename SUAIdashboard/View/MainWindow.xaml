@@ -92,7 +92,14 @@
                     </StackPanel>
 
                     <!-- Menu -->
-                    <ToggleButton x:Name="btnMenu"  HorizontalAlignment="Right" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Style="{StaticResource MenuIconStyle}" Margin="0 0 15 0" Cursor="Hand">
+                    <ToggleButton x:Name="btnMenu"  
+                                  HorizontalAlignment="Left" 
+                                  BorderThickness="0" 
+                                  Background="Transparent" 
+                                  VerticalAlignment="Center" 
+                                  Style="{StaticResource MenuIconStyle}" 
+                                  Margin="15 0 0 0" 
+                                  Cursor="Hand">
                         <ToggleButton.Triggers>
                             <EventTrigger RoutedEvent="ToggleButton.Unchecked">
                                 <BeginStoryboard>

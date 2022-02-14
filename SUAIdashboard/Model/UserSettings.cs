@@ -48,6 +48,13 @@ namespace SUAIdashboard.Model
             set { browserUsing = value; OnPropertyChanged("BrowserUsing"); }
         }
 
+        bool subjectGroup;
+        public bool SubjectGroup
+        {
+            get { return subjectGroup; }
+            set { subjectGroup = value; OnPropertyChanged("SubjectGroup"); }
+        }
+
         #endregion
     }
 }

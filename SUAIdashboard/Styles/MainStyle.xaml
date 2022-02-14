@@ -248,5 +248,38 @@
 
     <!--End: ViewSwitcher-->
 
+    <!--Start: SortSwitcher-->
+    <Style x:Key="SortSwitcher" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border x:Name="bord">
+                        <Path x:Name="icon" Data="{DynamicResource eye_outline_off}" Fill="{DynamicResource ActionIconColor}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="icon" Property="Data" Value="{DynamicResource sort-clocck-descendinf-outline}"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter TargetName="icon" Property="Data" Value="{DynamicResource sort-clock-ascending-outline}"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter TargetName="icon" Property="Data" Value="{DynamicResource clock}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bord" Property="Background" Value="{DynamicResource SecundaryBackgroundColor}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="bord" Property="Background" Value="{DynamicResource PrimaryBackgroundColor}"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--End: SortSwitcher-->
+
 
 </ResourceDictionary>

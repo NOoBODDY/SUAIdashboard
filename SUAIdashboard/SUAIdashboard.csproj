@@ -60,6 +60,10 @@
     </ApplicationDefinition>
     <Compile Include="Converter\VisibilityConverter.cs" />
     <Compile Include="DataKeeper.cs" />
+    <Compile Include="InDev\DesignerPage.xaml.cs">
+      <DependentUpon>DesignerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LabsSubjects.cs" />
     <Compile Include="Model\LabWork.cs" />
     <Compile Include="Model\Profile.cs" />
     <Compile Include="Model\UserSettings.cs" />
@@ -76,6 +80,10 @@
     <Page Include="Icons\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="InDev\DesignerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\MainStyle.xaml">
       <Generator>MSBuild:Compile</Generator>

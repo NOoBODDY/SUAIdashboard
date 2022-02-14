@@ -19,19 +19,31 @@
             <Border x:Name="btnVis" Background="Transparent" Visibility="{Binding VisibilityBtn}"/>
             <DockPanel LastChildFill="True">
                 <Border DockPanel.Dock="Bottom">
-                    <ToggleButton Style="{DynamicResource ViewSwitcher}"
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <ToggleButton x:Name="sorting" Style="{DynamicResource SortSwitcher}"
                                   Height="20"
                                   Width="40"
                                   HorizontalAlignment="Right"
-                                  Margin="5"
-                                  Command="{Binding ChangeVisibility}"
-                                  />
+                                  Margin="0 5 0 5"
+                                  Command="{Binding SortDeadline}"
+                                  CommandParameter="{Binding ElementName=sorting, Path=IsChecked}"/>
+                        <ToggleButton Style="{DynamicResource ViewSwitcher}"
+                                  Height="20"
+                                  Width="40"
+                                  HorizontalAlignment="Right"
+                                  Margin="0 5 5 5"
+                                  Command="{Binding ChangeVisibility}"/>
+                        
+                    </StackPanel>
                 </Border>
-                <ListBox ItemsSource="{Binding LabWorks}" 
+                <ListBox x:Name="LabsList"
+                         ItemsSource="{Binding LabWorks}" 
                          HorizontalContentAlignment="Stretch"
                          SelectionMode="Extended"
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                         DockPanel.Dock="Top">
+                         DockPanel.Dock="Top"
+                         Visibility="{Binding Task}"
+                         >
 
                     <ListBox.ItemTemplate>
                         <DataTemplate >
@@ -66,6 +78,60 @@
 
                     </ListBox.ItemTemplate>
                 </ListBox>
+                <ListBox x:Name="SubjectList"
+                         ItemsSource="{Binding LabsSubject}"
+                         SelectionMode="Extended"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         DockPanel.Dock="Top"
+                         Visibility="{Binding Subject}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Expander Header="{Binding Name}" >
+                                <ListBox x:Name="LabsList"
+                                     ItemsSource="{Binding LabWorks}" 
+                                     HorizontalContentAlignment="Stretch"
+                                     SelectionMode="Extended"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                     DockPanel.Dock="Top">
+
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate >
+                                            <Border BorderBrush="{DynamicResource PrimaryGrayColor}" BorderThickness="1" CornerRadius="10" Background="{Binding StatusBrush}">
+                                                <Border.Visibility>
+                                                    <MultiBinding Converter="{StaticResource VisibilityBool}">
+                                                        <Binding ElementName="btnVis" Path="Visibility"/>
+                                                        <Binding Path="Visibility"/>
+                                                    </MultiBinding>
+                                                </Border.Visibility>
+                                                <DockPanel LastChildFill="True" Opacity="1">
+                                                    <!--Description-->
+                                                    <!--
+                                                    <Expander DockPanel.Dock="Bottom">
+                                                        <TextBlock x:Name="elementText" Grid.Row="1" Text="{Binding description}" Margin="3 5 0 0"/>
+                                                    </Expander>-->
+                                                    <!--Buttons-->
+                                                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                                                        <Button Content="{DynamicResource link}" Style="{DynamicResource LabButtonStyle}" Margin="0 5 5 0" Foreground="{DynamicResource ActionIconColor}"/>
+                                                        <Button Content="{DynamicResource clock}" Style="{DynamicResource LabButtonStyle}" Margin="0 5 5 0" Foreground="{Binding ClockBrush}" ToolTip="{Binding harddeadline}"/>
+                                                        <Button Content="{DynamicResource done}" Style="{DynamicResource LabButtonStyle}" Margin="0 5 5 0" Foreground="{DynamicResource ActionIconColor}"/>
+                                                    </StackPanel>
+                                                    <!--names-->
+                                                    <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
+                                                        <Label FontSize="25" Content="{Binding subject_name}" Margin="1 5 0 0"/>
+                                                        <TextBlock TextWrapping="Wrap" FontSize="20" Text="{Binding name}" Margin="3 5 0 0"/>
+                                                    </StackPanel>
+                                                </DockPanel>
+
+                                            </Border>
+                                        </DataTemplate>
+
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Expander>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                
             </DockPanel>
             
             <Label Content="{Binding Label}" Foreground="Black" FontSize="50" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>

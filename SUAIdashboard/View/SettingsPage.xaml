@@ -54,6 +54,13 @@
                               Width="40"
                               IsChecked="{Binding Settings.DelWeekAgo}"/>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label>Группировать по предметам</Label>
+                    <ToggleButton Style="{DynamicResource Switcher}"
+                              Height="20"
+                              Width="40"
+                              IsChecked="{Binding Settings.SubjectGroup}"/>
+                </StackPanel>
             </StackPanel>
 
             <Button Grid.Row="1" 
